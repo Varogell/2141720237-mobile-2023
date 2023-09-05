@@ -1,5 +1,5 @@
 # pemrograman week 2
-project hello world
+project Pengantar Bahasa Pemrograman Dart
 nama:Alvaro Hegel Ivanka
 
 nim:2141720237
@@ -25,3 +25,6 @@ jawab:
 - Memahami struktur dari bahasa pemrograman dart seperti:operator dart,artimatic operator,increment and decrement operators,Equality and relational operators,dan logical operators
 - Mengetahui dasar dasar sintaks dan kakas yang tersedia untuk pengembangan dart
 - Mencoba coding dengan bahasa dart
+
+soal 4
+https://www.canva.com/design/DAFtkHvdCGg/hFeeBB4ea6LjBSNHJFJzcw/edit
