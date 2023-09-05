@@ -5,3 +5,4 @@
 |No|Judul|link|
 |--|-----|----|
 |week_1|membuat hello world menggunakan dart|https://github.com/Varogell/2141720237-mobile-2023/tree/main/week1| 
+|week_2|pengantar bahasa pemrograman dart|https://github.com/Varogell/2141720237-mobile-2023/tree/main/week2|
