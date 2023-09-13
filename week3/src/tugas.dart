@@ -1,6 +1,6 @@
 void main() {
-  String namaSaya = "Rizaldy Ali Machfuddin";
-  String nim = "2141720115";
+  String namaSaya = "Alvaro Hegel Ivanka";
+  String nim = "2141720237";
   for (int num = 0; num <= 201; num++) {
     if (isPrime(num)) {
       print("Bilangan prima: $num");
