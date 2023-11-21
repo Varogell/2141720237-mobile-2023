@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'dart:async';
+import 'package:async/async.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -42,6 +43,46 @@ class FuturePage extends StatefulWidget {
 
 class _FuturePageState extends State<FuturePage> {
   String result = '';
+  late Completer completer;
+  void returnFG(){
+    final futures = Future.wait<int>([
+      returnOneAsync(),
+      returnTwoAsync(),
+      returnThreeAsync(),
+    ]);
+    Future returnError() async {
+      await Future.delayed(const Duration(seconds:2));
+      throw Exception('Something terrible happened!');
+    }
+    // FutureGroup<int> futureGroup = FutureGroup<int>();
+    // futureGroup.add(returnOneAsync());
+    // futureGroup.add(returnTwoAsync());
+    // futureGroup.add(returnThreeAsync());
+    // futureGroup.close();
+    // futureGroup.future.then((List <int> value){
+    //   int total = 0;
+    //   for (var element in value){
+    //     total += element;
+    //   }
+    //   setState(() {
+    //     result = total.toString();
+    //   });
+    // });
+  }
+  Future getNumber(){
+    completer = Completer<int>();
+    calculate();
+    return completer.future;
+  }
+  Future calculate() async {
+    try{
+    await Future.delayed(const Duration(seconds: 5));
+    completer.complete(42);
+    }
+    catch(_){
+      completer.completeError({});
+    }
+  }
   Future<Response> getData() async {
     const authority = 'www.googleapis.com';
     const path = '/books/v1/volumes/S0ZNe2iqM54C';
@@ -82,7 +123,20 @@ class _FuturePageState extends State<FuturePage> {
           ElevatedButton(
             child: const Text('GO!'),
             onPressed: () {
-              count();
+              returnFG();
+              // getNumber().then((value) {
+              //   setState(() {
+              //     result = value.toString();
+              //   });
+              // }).catchError((e) {
+              // result = 'An error occurred';
+              // });
+              // getNumber().then((value){
+              //   setState(() {
+              //     result = value.toString();
+              //   });
+              // });
+              // count();
               // setState(() {});
               // getData().then((value) {
               //   result = value.body.toString().substring(0, 450);
