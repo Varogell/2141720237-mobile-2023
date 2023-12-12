@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'stream.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -28,8 +28,34 @@ class StreamHomePage extends StatefulWidget {
 }
 
 class _StreamHomePageState extends State<StreamHomePage> {
+  Color bgColor = Colors.blueGrey;
+  late ColorStream colorStream;
+  
+  @override
+  void initState() {
+    super.initState();
+    colorStream = ColorStream();
+    changeColor();
+  }
+  @override
+   void changeColor() async {
+    await for (var eventColor in colorStream.getColors()){
+      setState(() {
+        bgColor = eventColor;
+      });
+    }
+   }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+       appBar: AppBar(
+        title: const Text('Alvaro Stream'),
+      ),
+      body: Container(
+        decoration: BoxDecoration(color: bgColor),
+      ),
+    );
   }
+
 }
